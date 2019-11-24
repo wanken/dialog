@@ -1,0 +1,28 @@
+server:
+  port: 9999
+spring:
+  application:
+    name: dialog
+  profiles:
+    active: dev
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3308/dialogue?useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      allow-pool-suspension: true
+      minimum-idle: 5
+      idle-timeout: 180000
+      maximum-pool-size: 10
+      auto-commit: true
+      pool-name: MyHikariPool
+      max-lifetime: 1800000
+      connection-timeout: 30000
+      connection-test-query: SELECT 1
+  jpa:
+    open-in-view: true
+    database: mysql
+    show-sql: true
+
