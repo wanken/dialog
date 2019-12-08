@@ -5,13 +5,14 @@ import java.util.Objects;
 
 /**
  * @author waver
- * @date 2019/11/24 22:39
+ * @date 2019/12/8 14:12
  */
 @Entity
 @Table(name = "dialog_user")
 public class DialogUser {
     private String id;
-    private String userName;
+    private String username;
+    private String account;
     private String password;
     private int statue;
     private int grade;
@@ -29,13 +30,23 @@ public class DialogUser {
     }
 
     @Basic
-    @Column(name = "user_name")
-    public String getUserName() {
-        return userName;
+    @Column(name = "username")
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    @Basic
+    @Column(name = "account")
+    public String getAccount() {
+        return account;
+    }
+
+    public void setAccount(String account) {
+        this.account = account;
     }
 
     @Basic
@@ -102,12 +113,13 @@ public class DialogUser {
                 createTime == that.createTime &&
                 updateTime == that.updateTime &&
                 Objects.equals(id, that.id) &&
-                Objects.equals(userName, that.userName) &&
+                Objects.equals(username, that.username) &&
+                Objects.equals(account, that.account) &&
                 Objects.equals(password, that.password);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, userName, password, statue, grade, createTime, updateTime);
+        return Objects.hash(id, username, account, password, statue, grade, createTime, updateTime);
     }
 }
