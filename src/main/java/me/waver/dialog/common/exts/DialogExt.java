@@ -1,4 +1,4 @@
-package me.waver.dialog.beans;
+package me.waver.dialog.common.exts;
 
 import javax.persistence.*;
 import java.util.Objects;
@@ -9,7 +9,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "dialog")
-public class Dialog {
+public class DialogExt {
     private String id;
     private String name;
     private String cover;
@@ -129,7 +129,7 @@ public class Dialog {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Dialog dialog = (Dialog) o;
+        DialogExt dialog = (DialogExt) o;
         return type == dialog.type &&
                 creatDate == dialog.creatDate &&
                 updateDate == dialog.updateDate &&

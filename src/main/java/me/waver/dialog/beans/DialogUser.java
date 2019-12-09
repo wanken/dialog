@@ -5,7 +5,7 @@ import java.util.Objects;
 
 /**
  * @author waver
- * @date 2019/12/8 14:12
+ * @date 2019/12/9 20:35
  */
 @Entity
 @Table(name = "dialog_user")
@@ -15,7 +15,7 @@ public class DialogUser {
     private String account;
     private String password;
     private int statue;
-    private int grade;
+    private String refGradeId;
     private long createTime;
     private long updateTime;
 
@@ -70,13 +70,13 @@ public class DialogUser {
     }
 
     @Basic
-    @Column(name = "grade")
-    public int getGrade() {
-        return grade;
+    @Column(name = "ref_grade_id")
+    public String getRefGradeId() {
+        return refGradeId;
     }
 
-    public void setGrade(int grade) {
-        this.grade = grade;
+    public void setRefGradeId(String grade) {
+        this.refGradeId = grade;
     }
 
     @Basic
@@ -109,7 +109,7 @@ public class DialogUser {
         }
         DialogUser that = (DialogUser) o;
         return statue == that.statue &&
-                grade == that.grade &&
+                Objects.equals(refGradeId, that.refGradeId) &&
                 createTime == that.createTime &&
                 updateTime == that.updateTime &&
                 Objects.equals(id, that.id) &&
@@ -120,6 +120,6 @@ public class DialogUser {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, account, password, statue, grade, createTime, updateTime);
+        return Objects.hash(id, username, account, password, statue, refGradeId, createTime, updateTime);
     }
 }

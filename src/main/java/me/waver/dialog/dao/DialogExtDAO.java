@@ -1,6 +1,6 @@
 package me.waver.dialog.dao;
 
-import me.waver.dialog.beans.Dialog;
+import me.waver.dialog.common.exts.DialogExt;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
@@ -8,14 +8,14 @@ import java.util.List;
 
 /**
  * @author waver
- * @date 2019/12/8 13:53
+ * @date 2019/12/9 20:31
  */
-public interface DialogDAO extends JpaRepository<Dialog, String> , JpaSpecificationExecutor<Dialog> {
+public interface DialogExtDAO extends JpaRepository<DialogExt, String>, JpaSpecificationExecutor<DialogExt> {
 
     /**
      * 根据年级ID查询
      * @param gradeId 年级ID
-     * @return List<Dialog>
+     * @return List<DialogExt>
      */
-    List<Dialog> findAllByRefGradeId(String gradeId);
+    List<DialogExt> findAllByRefGradeIdOrderByCreatDate(String gradeId);
 }
