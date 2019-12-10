@@ -18,4 +18,11 @@ public interface DialogExtDAO extends JpaRepository<DialogExt, String>, JpaSpeci
      * @return List<DialogExt>
      */
     List<DialogExt> findAllByRefGradeIdOrderByCreatDate(String gradeId);
+
+    /**
+     * 根据父级ID查询
+     * @param dialogId
+     * @return
+     */
+    List<DialogExt> findAllByParentId(String dialogId);
 }
