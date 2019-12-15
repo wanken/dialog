@@ -11,9 +11,9 @@ import java.util.List;
 public interface DialogSentenceService {
 
     /**
-     * 根据对话ID获取句子列表
-     * @param dialogId 对话ID
+     * 根据DialogId获取会话句子列表
+     * @param dialogId 会话ID
      * @return List<DialogSentence>
      */
-    List<DialogSentence> findAllDialogSentenceByRefDialogId(String dialogId);
+    List<DialogSentence> findAllByRefDetailId(String dialogId);
 }

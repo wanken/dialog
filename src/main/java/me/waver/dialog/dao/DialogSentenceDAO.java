@@ -13,7 +13,7 @@ import java.util.List;
 public interface DialogSentenceDAO extends JpaRepository<DialogSentence,String>, JpaSpecificationExecutor<DialogSentence> {
 
     /**
-     * 根据会话ID查询会话句子列表
+     * 根据DialogId获取会话句子列表
      * @param dialogId 会话ID
      * @return List<DialogSentence>
      */

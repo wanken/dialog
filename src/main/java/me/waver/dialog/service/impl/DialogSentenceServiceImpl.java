@@ -3,6 +3,7 @@ package me.waver.dialog.service.impl;
 import me.waver.dialog.beans.DialogSentence;
 import me.waver.dialog.dao.DialogSentenceDAO;
 import me.waver.dialog.service.DialogSentenceService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,7 +14,6 @@ import java.util.List;
  */
 @Service
 public class DialogSentenceServiceImpl implements DialogSentenceService {
-
     private final DialogSentenceDAO dialogSentenceDAO;
 
     public DialogSentenceServiceImpl(DialogSentenceDAO dialogSentenceDAO) {
@@ -21,7 +21,7 @@ public class DialogSentenceServiceImpl implements DialogSentenceService {
     }
 
     @Override
-    public List<DialogSentence> findAllDialogSentenceByRefDialogId(String dialogId) {
+    public List<DialogSentence> findAllByRefDetailId(String dialogId) {
         return dialogSentenceDAO.findAllByRefDetailId(dialogId);
     }
 }

@@ -4,6 +4,7 @@ import cn.hutool.core.collection.CollUtil;
 import me.waver.dialog.beans.DialogSentence;
 import me.waver.dialog.common.entity.Result;
 import me.waver.dialog.service.DialogSentenceService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,20 +18,19 @@ import java.util.List;
 @RestController
 @RequestMapping("/dialogSentence")
 public class DialogSentenceController {
-    private final DialogSentenceService dialogSentenceService;
 
+    private final DialogSentenceService dialogSentenceService;
 
     public DialogSentenceController(DialogSentenceService dialogSentenceService) {
         this.dialogSentenceService = dialogSentenceService;
     }
 
-    @GetMapping("/getSentencesByDialogId")
-    public Result getSentencesByDialogId(String dialogId) {
-        List<DialogSentence> sentenceList = dialogSentenceService.findAllDialogSentenceByRefDialogId(dialogId);
-        if (CollUtil.isNotEmpty(sentenceList)) {
-            return Result.ok("查询成功", sentenceList);
+    @GetMapping("getSentenceList")
+    public Result getSentenceList(String dialogId){
+        List<DialogSentence> dialogSentences = dialogSentenceService.findAllByRefDetailId(dialogId);
+        if (CollUtil.isNotEmpty(dialogSentences)) {
+            return Result.ok(dialogSentences);
         }
-        return Result.fail("没有找到任何内容");
+        return Result.fail("该会话下没有找到任何句子");
     }
-
 }
