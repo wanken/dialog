@@ -21,6 +21,6 @@ public class DialogServiceImpl implements DialogService {
 
     @Override
     public List<DialogExt> getAllByGradeId(String gradeId) {
-        return dialogExtDAO.findAllByRefGradeIdOrderByCreatDate(gradeId);
+        return dialogExtDAO.findAllByRefGradeIdAndParentIdOrderByCreatDate(gradeId, "-1");
     }
 }

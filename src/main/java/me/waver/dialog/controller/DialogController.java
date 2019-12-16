@@ -23,7 +23,7 @@ public class DialogController {
         this.dialogService = dialogService;
     }
 
-    @GetMapping("getAll")
+    @GetMapping("/getByGradeId")
     public Result getAllDialog(String gradeId){
         List<DialogExt> dialogExtList = dialogService.getAllByGradeId(gradeId);
         if (CollUtil.isNotEmpty(dialogExtList)) {

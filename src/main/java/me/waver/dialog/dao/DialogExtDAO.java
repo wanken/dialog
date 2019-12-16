@@ -15,14 +15,15 @@ public interface DialogExtDAO extends JpaRepository<DialogExt, String>, JpaSpeci
     /**
      * 根据年级ID查询
      * @param gradeId 年级ID
+     * @param parentId 父级ID
      * @return List<DialogExt>
      */
-    List<DialogExt> findAllByRefGradeIdOrderByCreatDate(String gradeId);
+    List<DialogExt> findAllByRefGradeIdAndParentIdOrderByCreatDate(String gradeId, String parentId);
 
     /**
      * 根据父级ID查询
-     * @param dialogId
-     * @return
+     * @param dialogId 会话ID
+     * @return List<DialogExt>
      */
     List<DialogExt> findAllByParentId(String dialogId);
 }

@@ -1,11 +1,13 @@
 package me.waver.dialog.common.exts;
 
+
 import javax.persistence.*;
+import java.util.List;
 import java.util.Objects;
 
 /**
  * @author waver
- * @date 2019/12/9 20:35
+ * @date 2019/12/16 14:02
  */
 @Entity
 @Table(name = "dialog")
@@ -16,10 +18,10 @@ public class DialogExt {
     private int type;
     private String refGradeId;
     private String parentId;
-    private String attachFile;
     private Integer layerIndex;
     private long creatDate;
     private long updateDate;
+    private List<DialogExt> children;
 
     @Id
     @Column(name = "id")
@@ -67,8 +69,8 @@ public class DialogExt {
         return refGradeId;
     }
 
-    public void setRefGradeId(String refGreadId) {
-        this.refGradeId = refGreadId;
+    public void setRefGradeId(String refGradeId) {
+        this.refGradeId = refGradeId;
     }
 
     @Basic
@@ -79,16 +81,6 @@ public class DialogExt {
 
     public void setParentId(String parentId) {
         this.parentId = parentId;
-    }
-
-    @Basic
-    @Column(name = "attach_file")
-    public String getAttachFile() {
-        return attachFile;
-    }
-
-    public void setAttachFile(String attachFile) {
-        this.attachFile = attachFile;
     }
 
     @Basic
@@ -121,6 +113,16 @@ public class DialogExt {
         this.updateDate = updateDate;
     }
 
+    @JoinColumn(name = "parent_id")
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.REMOVE, CascadeType.DETACH})
+    public List<DialogExt> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<DialogExt> children) {
+        this.children = children;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -129,21 +131,20 @@ public class DialogExt {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        DialogExt dialog = (DialogExt) o;
-        return type == dialog.type &&
-                creatDate == dialog.creatDate &&
-                updateDate == dialog.updateDate &&
-                Objects.equals(id, dialog.id) &&
-                Objects.equals(name, dialog.name) &&
-                Objects.equals(cover, dialog.cover) &&
-                Objects.equals(refGradeId, dialog.refGradeId) &&
-                Objects.equals(parentId, dialog.parentId) &&
-                Objects.equals(attachFile, dialog.attachFile) &&
-                Objects.equals(layerIndex, dialog.layerIndex);
+        DialogExt dialogExt = (DialogExt) o;
+        return type == dialogExt.type &&
+                creatDate == dialogExt.creatDate &&
+                updateDate == dialogExt.updateDate &&
+                Objects.equals(id, dialogExt.id) &&
+                Objects.equals(name, dialogExt.name) &&
+                Objects.equals(cover, dialogExt.cover) &&
+                Objects.equals(refGradeId, dialogExt.refGradeId) &&
+                Objects.equals(parentId, dialogExt.parentId) &&
+                Objects.equals(layerIndex, dialogExt.layerIndex);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, cover, type, refGradeId, parentId, attachFile, layerIndex, creatDate, updateDate);
+        return Objects.hash(id, name, cover, type, refGradeId, parentId, layerIndex, creatDate, updateDate);
     }
 }

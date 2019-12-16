@@ -26,8 +26,8 @@ public class DialogSentenceController {
     }
 
     @GetMapping("getSentenceList")
-    public Result getSentenceList(String dialogId){
-        List<DialogSentence> dialogSentences = dialogSentenceService.findAllByRefDetailId(dialogId);
+    public Result getSentenceList(String detailId){
+        List<DialogSentence> dialogSentences = dialogSentenceService.findAllByRefDetailId(detailId);
         if (CollUtil.isNotEmpty(dialogSentences)) {
             return Result.ok(dialogSentences);
         }

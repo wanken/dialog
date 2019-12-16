@@ -5,7 +5,7 @@ import java.util.Objects;
 
 /**
  * @author waver
- * @date 2019/12/9 20:35
+ * @date 2019/12/16 14:02
  */
 @Entity
 @Table(name = "dialog")
@@ -16,7 +16,6 @@ public class Dialog {
     private int type;
     private String refGradeId;
     private String parentId;
-    private String attachFile;
     private Integer layerIndex;
     private long creatDate;
     private long updateDate;
@@ -67,8 +66,8 @@ public class Dialog {
         return refGradeId;
     }
 
-    public void setRefGradeId(String refGreadId) {
-        this.refGradeId = refGreadId;
+    public void setRefGradeId(String refGradeId) {
+        this.refGradeId = refGradeId;
     }
 
     @Basic
@@ -79,16 +78,6 @@ public class Dialog {
 
     public void setParentId(String parentId) {
         this.parentId = parentId;
-    }
-
-    @Basic
-    @Column(name = "attach_file")
-    public String getAttachFile() {
-        return attachFile;
-    }
-
-    public void setAttachFile(String attachFile) {
-        this.attachFile = attachFile;
     }
 
     @Basic
@@ -138,12 +127,11 @@ public class Dialog {
                 Objects.equals(cover, dialog.cover) &&
                 Objects.equals(refGradeId, dialog.refGradeId) &&
                 Objects.equals(parentId, dialog.parentId) &&
-                Objects.equals(attachFile, dialog.attachFile) &&
                 Objects.equals(layerIndex, dialog.layerIndex);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, cover, type, refGradeId, parentId, attachFile, layerIndex, creatDate, updateDate);
+        return Objects.hash(id, name, cover, type, refGradeId, parentId, layerIndex, creatDate, updateDate);
     }
 }
