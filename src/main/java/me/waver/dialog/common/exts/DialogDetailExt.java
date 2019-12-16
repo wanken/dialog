@@ -1,7 +1,6 @@
 package me.waver.dialog.common.exts;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import me.waver.dialog.beans.DialogDetail;
 import me.waver.dialog.beans.DialogSentence;
 import me.waver.dialog.beans.DialogWord;
