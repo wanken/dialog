@@ -18,7 +18,7 @@ import java.util.List;
 public class BaseController {
 
     @GetMapping("uuid")
-    private Result getUuid(Integer count) {
+    public Result getUuid(Integer count) {
 
         if (count == null) {
             return Result.ok("生成成功", IdUtil.fastSimpleUUID());
@@ -30,5 +30,27 @@ public class BaseController {
             return Result.ok("生成成功", uuidList);
         }
         return Result.fail("生成失败");
+    }
+
+    /**
+     * 时间转换接口
+     * @param time  时间字符串
+     * @return Result
+     */
+    @GetMapping("/time")
+    public Result getMillionTime(String time) {
+        String[] split = time.split(":");
+        long timeNum = 0L;
+        for (int i = 0; i < split.length; i++) {
+            if (i == 0) {
+                timeNum = Long.parseLong(split[0]) * 60 * 1000;
+            }
+            if (i == 1) {
+                String[] strings = split[i].split("\\.");
+                timeNum+= Long.parseLong(strings[0])*1000 + Long.parseLong(strings[1])*10;
+            }
+
+        }
+        return Result.ok(timeNum);
     }
 }
